@@ -20,6 +20,13 @@ io.on("connection", (socket) => {
     console.log(`ユーザーID:${socket.id}が${data}に参加しました！`);
   });
 
+  // チャット専用のソケット設定
+  socket.on("send_message", (data) => {
+    console.log(data);
+    // クライアントに返すソケット通信(room番号を共有している人のみ)
+    socket.to(data.room).emit("receive_message", data);
+  });
+
   socket.on("disconnect", () => {
     console.log("ユーザーとの接続が切れました！" + "socket-id:" + socket.id);
   });
