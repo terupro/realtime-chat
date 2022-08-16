@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import ChatIcon from "@mui/icons-material/Chat";
 
-const Chat = ({ socket, username, room }) => {
+const Chat = ({ socket, username, room, setShowChat, showChat }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
-  const sendMessage = async () => {
+  const sendMessage = async (e) => {
+    e.preventDefault();
     if (currentMessage !== "") {
       const messageData = {
         message: currentMessage,
@@ -29,8 +31,10 @@ const Chat = ({ socket, username, room }) => {
 
   return (
     <div className="chat-window">
+      <div className="chat-wrapper"></div>
       <div className="chat-header">
-        <p>ライブチャット</p>
+        <ChatIcon className="icon" />
+        <p>チャット</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -39,7 +43,7 @@ const Chat = ({ socket, username, room }) => {
               className="message"
               id={username == messageContent.author ? "you" : "other"}
             >
-              <div>
+              <div className="message-wrapper">
                 <div className="message-content">
                   <p>{messageContent.message}</p>
                 </div>
@@ -52,15 +56,16 @@ const Chat = ({ socket, username, room }) => {
           ))}
         </ScrollToBottom>
       </div>
-      <div className="chat-footer">
+
+      <form onSubmit={sendMessage} className="chat-footer">
         <input
           type="text"
           placeholder="メッセージ内容"
           value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
-        <button onClick={sendMessage}>&#9658;</button>
-      </div>
+        <button>&#9658;</button>
+      </form>
     </div>
   );
 };
