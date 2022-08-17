@@ -115,7 +115,7 @@ h1 {
 }
 .chat-window .chat-header {
   height: 45px;
-  background: #00c34d;
+  background: #eee;
   position: relative;
   cursor: pointer;
   display: flex;
@@ -129,13 +129,13 @@ h1 {
 }
 .chat-window .chat-header p {
   display: block;
-  color: #fff;
+  color: #545454;
   font-weight: 700;
   line-height: 45px;
 }
 .chat-window .chat-header .icon {
   display: block;
-  color: #fff;
+  color: #545454;
   font-weight: 700;
   line-height: 45px;
   padding-top: 5px;
@@ -223,7 +223,7 @@ h1 {
 }
 
 .message-meta #author {
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
 }
 

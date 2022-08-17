@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import ChatIcon from "@mui/icons-material/Chat";
+import { v4 as uuidv4 } from "uuid";
 
 const Chat = ({ socket, username, room, setShowChat, showChat }) => {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -38,8 +39,9 @@ const Chat = ({ socket, username, room, setShowChat, showChat }) => {
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => (
+          {messageList.map((messageContent, index) => (
             <div
+              key={uuidv4()}
               className="message"
               id={username == messageContent.author ? "you" : "other"}
             >
